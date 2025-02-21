@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confetes Coloridos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffe4e1; /* Cor de fundo igual ao seu outro site */
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Ocupa toda a altura da tela */
+            display: flex; /* Flexbox para o layout */
+            justify-content: center; /* Centraliza no eixo horizontal */
+            align-items: center; /* Centraliza no eixo vertical */
+            position: relative; /* Para garantir que os confetes sejam posicionados corretamente */
+            flex-direction: column; /* Organiza o conteúdo de forma vertical */
+        }
+
+        /* Animação dos confetes */
+        @keyframes confete {
+            0% {
+                transform: translateY(-100px) rotate(0deg); /* Inicia fora da tela no topo */
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg); /* Move até o fundo da tela */
+                opacity: 0;
+            }
+        }
+
+        .confete {
+            position: absolute;
+            top: 0; /* Adicionado para iniciar no topo */
+            width: 10px;
+            height: 10px;
+            background-color: #ff1493; /* Cor inicial do confete */
+            animation: confete 5s infinite linear;
+        }
+
+        /* Gerando confetes com diferentes cores e posições */
+        .confete:nth-child(odd) {
+            background-color: #ff6347; /* Cor laranja para confetes ímpares */
+        }
+
+        .confete:nth-child(even) {
+            background-color: #32cd32; /* Cor verde para confetes pares */
+        }
+
+        /* Quadrado para o gif */
+        .gif-container {
+            z-index: 5;
+            width: 320px; /* Largura do quadrado */
+            height: 320px; /* Altura do quadrado */
+            border-left: 10px solid rgb(141, 11, 124);  /* Borda à esquerda */
+            border-bottom: 10px solid rgb(141, 11, 124);  /* Borda embaixo */
+            display: flex;
+            justify-content: center; /* Centraliza o gif no eixo horizontal */
+            align-items: center; /* Centraliza o gif no eixo vertical */
+            background-color: rgb(236, 191, 255); /* Cor de fundo do quadrado */
+        }
+
+        .gif-container img {
+            width: 100%; /* O gif vai preencher o quadrado */
+            height: auto;
+        }
+
+        /* Estilo para o texto */
+        .texto {
+            font-size: 3rem;
+            color: #000; /* Cor do texto */
+            font-weight: bold;
+            margin-bottom: 20px; /* Espaçamento entre o texto e o gif */
+            text-align: center;
+            z-index: 10; /* Para garantir que o texto fique acima do gif */
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Texto em cima do gif -->
+    <div class="texto">WuPeeeeee</div>
+
+    <!-- Contêiner do gif com quadrado -->
+    <div class="gif-container">
+        <img src="img fofinhas/happy-cat-happy-happy-cat.gif" alt="Gif">
+    </div>
+
+    <!-- Gerando confetes -->
+    <script>
+        function gerarConfetes() {
+            setInterval(() => {
+                let confete = document.createElement('div');
+                confete.classList.add('confete');
+                confete.style.left = `${Math.random() * 100}vw`; /* Largura da tela */
+                confete.style.animationDuration = `${Math.random() * 2 + 3}s`; /* Aleatorizando a duração */
+                confete.style.animationTimingFunction = "linear";  /* Aceleração constante para o efeito */
+                document.body.appendChild(confete);
+
+                // Remover confetes depois que eles saem da tela para evitar sobrecarregar o DOM
+                setTimeout(() => {
+                    confete.remove();
+                }, 5000);  // O tempo deve ser maior ou igual ao tempo da animação
+            }, 100); // Gera um novo confete a cada 100ms
+        }
+
+        // Chama a função para gerar os confetes
+        gerarConfetes();
+    </script>
+</body>
+</html>
