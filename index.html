@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecionamento baseado no tamanho da tela</title>
+    <title>Redirecionamento</title>
     <script>
-        // Função para redirecionar com base no tamanho da tela
-        window.onload = function() {
-            var larguraTela = window.innerWidth;  // Obtém a largura da tela
+        document.addEventListener("DOMContentLoaded", function() {
+            var userAgent = navigator.userAgent.toLowerCase();
+            
+            // Detecta dispositivos móveis
+            var isMobile = /android|iphone|ipad|ipod|windows phone|mobile/i.test(userAgent);
 
-            // Se a largura for maior que 768px (tela de PC)
-            if (larguraTela > 768) {
-                window.location.href = "index2.html";  // Redireciona para a página do PC
+            if (isMobile) {
+                window.location.href = "celular.html";  // Redireciona para celular.html
             } else {
-                window.location.href = "celular.html";  // Redireciona para a página do celular
+                window.location.href = "index2.html";  // Redireciona para PC
             }
-        }
+        });
     </script>
 </head>
 <body>
-    <!-- Conteúdo padrão (não será exibido devido ao redirecionamento) -->
     <p>Redirecionando...</p>
 </body>
 </html>
